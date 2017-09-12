@@ -41,3 +41,12 @@ app.get('/', function(req,res){
 	});	
 
 })
+
+app.get('/:tagId', function(req,res){
+	// req.param("tagId");
+	var id_find=Animals.find({_id:req.param("tagId")},function(err,arr){
+		var pass = arr;
+		res.render('display', {mongoose:pass});
+	});
+	
+})
