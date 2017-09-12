@@ -10,6 +10,7 @@
 		<p>Name: <%=mongoosii[i].name%></p>
 		<p>Hiearchy: <%=mongoosii[i].hiearchy%></p>
 		<p>Level: <%=mongoosii[i].level%></p>
+		<button><a href='/destroy/<%=mongoosii[i]._id%>'> Kill!</a></button>
 		<hr>
 	<%}%>
 </body>

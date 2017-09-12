@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Mongoose</h1>
+	<p>Name: <%=mongoose[0].name%></p>
+	<p>Hiearchy: <%=mongoose[0].hiearchy%></p>
+	<p>Level: <%=mongoose[0].level%></p>
+	<form action='/change' method='POST'>
+		<input type='hidden' value='<%=mongoose[0]._id%>' name='id'>
+		Edit Hiearchy:
+		<input type='text' name='hiearchy'><br>
+		Edit Level:
+		<input type='text' name='level'><br>
+		<input type='submit' value='Change!'>
+	</form>
+</body>
+</html>

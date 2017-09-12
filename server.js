@@ -43,10 +43,38 @@ app.get('/', function(req,res){
 })
 
 app.get('/:tagId', function(req,res){
-	// req.param("tagId");
-	var id_find=Animals.find({_id:req.param("tagId")},function(err,arr){
+	Animals.find({_id:req.param("tagId")},function(err,arr){
 		var pass = arr;
 		res.render('display', {mongoose:pass});
 	});
 	
+})
+
+app.get('/edit/:tagId', function(req,res){
+	var id_find=Animals.find({_id:req.param("tagId")},function(err,arr){
+		var pass = arr;
+		res.render('edit', {mongoose:pass});
+	})
+});
+
+app.post('/change', function(req,res){
+	Animals.find({_id:req.body.id},function(err,arr){
+		console.log(arr[0]);
+		if(req.body.hiearchy){
+			arr[0].hiearchy = req.body.hiearchy
+		}
+		if(req.body.level){
+			arr[0].level = req.body.level 
+		}
+		arr[0].save(function(err){
+		})
+		res.redirect('/');
+	})	
+})
+
+app.get('/destroy/:tagId', function(req,res){
+	console.log(req.param('tagId'));
+	Animals.remove({_id:req.param('tagId')}, function(err){
+		res.redirect('/');
+	})
 })
