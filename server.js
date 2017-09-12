@@ -72,7 +72,7 @@ app.post('/change', function(req,res){
 	})	
 })
 
-app.get('/destroy/:tagId', function(req,res){
+app.post('/destroy/:tagId', function(req,res){
 	console.log(req.param('tagId'));
 	Animals.remove({_id:req.param('tagId')}, function(err){
 		res.redirect('/');

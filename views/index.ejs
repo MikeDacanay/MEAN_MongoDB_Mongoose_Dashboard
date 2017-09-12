@@ -10,8 +10,20 @@
 		<p>Name: <%=mongoosii[i].name%></p>
 		<p>Hiearchy: <%=mongoosii[i].hiearchy%></p>
 		<p>Level: <%=mongoosii[i].level%></p>
-		<button><a href='/destroy/<%=mongoosii[i]._id%>'> Kill!</a></button>
+		<form action='/destroy/<%=mongoosii[i]._id%>' method='POST'>
+			<!-- <input type='hidden' name='<%=mongoosii[i]._id%>'> -->
+			<input type='submit' value='Kill!'>
+		</form>
 		<hr>
 	<%}%>
+	<form action='/mongooses' method='POST'>
+		Hiearchy:
+		<input type='text' name='hiearchy'><br>
+		Name:
+		<input type='text' name='name'><br>
+		Level:
+		<input type='text' name='level'><br>
+		<input type='submit' value='Add to the Pack'>
+	</form>
 </body>
 </html>
