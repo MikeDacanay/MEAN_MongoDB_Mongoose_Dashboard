@@ -2,15 +2,15 @@ var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/basic_mongoose');
+mongoose.connect('mongodb://localhost/Mongoose_Horde');
 mongoose.Promise = global.Promise;
-var Moongoose_Dashboard_Schema = new mongoose.Schema({
-	hiearchy: {type: String, required: true, maxlength: 20},
-	name: {type: String, required: true, minlength: 1},
-	level: {type: Number, required: true, min: 1, max: 10},
+var Mongoose_Dashboard_Schema = new mongoose.Schema({
+	hiearchy: String,
+	name: String,
+	level: Number,
 	create_date: {type: Date, default: Date.now}
 })
-mongoose.model('Animals', Moongoose_Dashboard_Schema);
+mongoose.model('Animals', Mongoose_Dashboard_Schema);
 var Animals = mongoose.model('Animals') ;
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -23,10 +23,21 @@ app.get('/mongooses/new', function(req,res){
 })
 
 app.post('/mongooses', function(req,res){
-	console.log(req.body.name);
-	var newMongoose = new Animals;
-	newMongoose.hiearchy= req.body.hiearchy;
-	newMongoose.name= req.body.name;
-	newMongoose.level= req.body.level;
-	res.redirect('/mongooses/new');
+	var newMongoose = new Animals({hiearchy:req.body.hiearchy,name:req.body.name,level:req.body.level})
+	newMongoose.save(function(err){
+	   	if(err) {
+	    	console.log('something went wrong');
+	    } else {
+	    	console.log('successfully added a user!');
+	    	res.redirect('/');
+	    }
+	})
+})
+
+app.get('/', function(req,res){
+	Animals.find().sort({level:-1}).find({},function(err, arr) {
+		var pass = arr;
+		res.render('index', {mongoosii:pass});
+	});	
+
 })

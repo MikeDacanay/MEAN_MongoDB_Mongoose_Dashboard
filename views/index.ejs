@@ -4,6 +4,13 @@
 	<title></title>
 </head>
 <body>
-	<h1> TEST</h1>
+	<h1>Mongoosii</h1>
+	<% for(var i = 0; i < mongoosii.length; i++){%>
+		<p><b>#<%= i+1%></b></p>
+		<p>Name: <%=mongoosii[i].name%></p>
+		<p>Hiearchy: <%=mongoosii[i].hiearchy%></p>
+		<p>Level: <%=mongoosii[i].level%></p>
+		<hr>
+	<%}%>
 </body>
 </html>
