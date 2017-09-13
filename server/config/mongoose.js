@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 var path = require('path');
-mongoose.connect('mongodb://localhost/quotes_db');
+mongoose.connect('mongodb://localhost/Mongoose_Horde');
 var models_path = path.join(__dirname, './../models');
 fs.readdirSync(models_path).forEach(function(file) {
 	if(file.indexOf('.js') >= 0) {

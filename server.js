@@ -7,7 +7,7 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, './client/views'));
 app.set('view engine', 'ejs');
 
 require('./server/config/mongoose.js');
