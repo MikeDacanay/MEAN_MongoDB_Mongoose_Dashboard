@@ -47,5 +47,12 @@ module.exports = {
 		})
 		res.redirect('/');
 	})	
+	},
+
+	destroy: function(req,res){
+		console.log(req.param('tagId'));
+		Animals.remove({_id:req.param('tagId')}, function(err){
+		res.redirect('/');
+	})
 	}
 }
